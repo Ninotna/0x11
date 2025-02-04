@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import logementsData from "../data/logements.json";
 import Slideshow from "../components/Slideshow";
 import Collapse from "../components/Collapse";
@@ -8,8 +8,9 @@ const PropertyDetails = () => {
     const { id } = useParams();
     const property = logementsData.find((logement) => logement.id === id);
 
+    // Redirection si l'ID est invalide
     if (!property) {
-        return <h1>Propriété introuvable</h1>;
+        return <Navigate to="/404" />;
     }
 
     return (
