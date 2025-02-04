@@ -8,10 +8,10 @@ const PropertyDetails = () => {
     const { id } = useParams();
     const property = logementsData.find((logement) => logement.id === id);
 
-    // Redirection si l'ID est invalide
-    if (!property) {
-        return <Navigate to="/404" />;
-    }
+// Redirection si l'ID est invalide avec un état personnalisé
+if (!property) {
+    return <Navigate to="/404" state={{ errorType: "invalid-housing-id" }} />;
+}
 
     return (
         <div className="property-details">

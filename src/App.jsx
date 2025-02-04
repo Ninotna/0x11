@@ -13,6 +13,7 @@ const App = () => {
                 <Route index element={<Home />} />
                 <Route path="about" element={<About />} />
                 <Route path="housing/:id" element={<PropertyDetails />} />
+                <Route path="404" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} /> {/* Gestion des erreurs 404 */}
             </Route>
         </Routes>
