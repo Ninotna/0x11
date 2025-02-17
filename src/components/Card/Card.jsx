@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 // On est sur une one single page application (SPA) qui ne se recharge pas à chaque changement de page.
 // On a l'url qui change mais pas la page.
 
-const Card = ({ id, title, cover }) => {
+const Card = ({ data }) => {
   return (
-    <Link to={`/housing/${id}`} className="card">
-      <img src={cover} alt={title} />
+    <Link to={`/housing/${data.id}`} className="card">
+      <img src={data.cover} alt={data.title} />
       <div className="overlay">
-        <h2>{title}</h2>
+        <h2>{data.title}</h2>
       </div>
     </Link>
   );

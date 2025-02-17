@@ -1,16 +1,20 @@
 import homeBanner from "../../assets/picture/homeBanner.svg";
 import homeBannerMobile from "../../assets/picture/homeBannerMobile.svg";
+import Loader from "../../components/Loader/Loader";
 import Footer from "../../components/Footer/Footer";
 import useFetch from "../../utils/getData";
 import Gallery from "../../components/Gallery/Gallery";
 import Error404 from "../NotFound/Error404";
 
 function Home() {
-  const { data, isLoading, error } = useFetch("../data/logements.json");
+  const { data, isLoading, error } = useFetch("./logements.json");
+  // const error = null;
 
   if (error) {
+    // console.log(data);
     return <Error404 />;
   }
+  console.log(data);
   return (
     <div className="container">
       <main>
