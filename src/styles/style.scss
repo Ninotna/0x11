@@ -1,15 +1,20 @@
-@use "../styles/utils/_variables";
-@use "../styles/utils/_mixins";
-@use "../pages/Home/bannerHome";
-@use "../pages/About/bannerAbout";
-@use "../components/Card/card";
-// @use '../components/Gallery/Gallery'; a faire
-@use "../components/Header/header";
-@use "../components/Footer/footer";
-@use "../components/Collapse/Collapse";
-@use "../components/Carousel/carousel"; // remplacer slideshow par carousel
-@use "./base/base";
-@use "./base/typo";
+// Base - Utils
+@use "./base/_base";
+@use "./base/_typo";
+@use "./utils/_variables";
+@use "./utils/_mixins";
+
+// Components
+@use "../components/Card/_card";
+@use "../components/Header/_header";
+@use "../components/Footer/_footer";
+@use "../components/Dropdown/_dropdown";
+@use "../components/Carousel/_carousel";
+@use "../components/Gallery/_gallery";
+
+// Pages
+@use "../pages/Home/_bannerHome";
+@use "../pages/About/_bannerAbout";
 @use "../pages/Property/_property";
 @use "../pages/Property/_propertydetails";
 @use "../pages/About/_about";

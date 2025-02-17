@@ -1,7 +1,11 @@
+import React from "react";
 import { useParams, Navigate } from "react-router-dom";
 import logementsData from "../../data/logements.json";
-import Slideshow from "../../components/Carousel/Carousel";
-import Collapse from "../../components/Collapse/Collapse";
+import Footer from "../../components/Footer/Footer";
+import Error404 from "../404/Error404";
+import Carousel from "../../components/Carousel/Carousel";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import { useLocation } from "react-router-dom";
 
 const PropertyDetails = () => {
   const { id } = useParams();

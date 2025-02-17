@@ -1,59 +1,52 @@
-import { useState } from "react";
-import "../assets/styles/slideshow.scss";
-import { PropTypes } from "prop-types";
+import React, { useState } from "react";
+import arrowPrevious from "../../assets/icons/arrowPrevious.svg";
+import arrowNext from "../../assets/icons/arrowNext.svg";
 
-const Slideshow = ({ images }) => {
+function Carousel({ data }) {
+  const { pictures, title } = data;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const totalSlides = pictures.length;
 
-  // Fonction pour naviguer vers l'image suivante
-  const nextSlide = () => {
-    if (currentIndex === images.length - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
+  const onArrowClick = (direction) => {
+    const increment = direction === "left" ? -1 : 1;
+    const newIndex = (currentIndex + increment + totalSlides) % totalSlides;
+    setCurrentIndex(newIndex);
   };
-
-  // Fonction pour naviguer vers l'image précédente
-  const prevSlide = () => {
-    if (currentIndex === 0) {
-      setCurrentIndex(images.length - 1);
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-
-  // Ne pas afficher les flèches/numérotation si une seule image
-  if (images.length === 1) {
-    return (
-      <div className="slideshow">
-        <img src={images[0]} alt="Slide unique" className="slide" />
-      </div>
-    );
-  }
 
   return (
-    <div className="slideshow">
-      <img
-        src={images[currentIndex]}
-        alt={`Slide ${currentIndex + 1}`}
-        className="slide"
-      />
-      <button className="prev" onClick={prevSlide}>
-        &#9664; {/* Flèche gauche */}
-      </button>
-      <button className="next" onClick={nextSlide}>
-        &#9654; {/* Flèche droite */}
-      </button>
-      <div className="pagination">
-        {currentIndex + 1} / {images.length}
+    <section className="carousel">
+      <div className="carousel__container">
+        <div className="carousel__pix">
+          <img src={pictures[currentIndex]} alt={`${title}-${currentIndex}`} />
+        </div>
       </div>
-    </div>
+      {totalSlides > 1 && (
+        <div>
+          <span className="carousel__counter">
+            {currentIndex + 1}/{totalSlides}
+          </span>
+          <div className="carousel__button">
+            <button
+              type="button"
+              className="carousel__button--arrowPrevious"
+              direction="left"
+              onClick={() => onArrowClick("left")}
+            >
+              <img src={arrowPrevious} alt="Bouton précédent" />
+            </button>
+            <button
+              type="button"
+              className="carousel__button--arrowNext"
+              direction="right"
+              onClick={() => onArrowClick("right")}
+            >
+              <img src={arrowNext} alt="Bouton suivant" />
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
   );
-};
+}
 
-export default Slideshow;
-
-Slideshow.propTypes = {
-  images: PropTypes.array,
-};
+export default Carousel;

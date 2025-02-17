@@ -1,5 +1,4 @@
 import { useLocation, Link } from "react-router-dom";
-import "../assets/styles/notfound.scss";
 
 const NotFound = () => {
   const location = useLocation();
