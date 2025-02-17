@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @mixin sliderArrow {
   cursor: pointer;
   background-color: transparent;
@@ -53,7 +55,7 @@
   $breakpoints: (
     laptop: 1024px,
   );
-  @media screen and (max-width: map-get($breakpoints, laptop)) {
+  @media screen and (max-width: map.get($breakpoints, laptop)) {
     max-width: 1024px;
     @content;
   }
@@ -63,7 +65,7 @@
   $breakpoints: (
     tablet: 768px,
   );
-  @media screen and (max-width: map-get($breakpoints, tablet)) {
+  @media screen and (max-width: map.get($breakpoints, tablet)) {
     max-width: 748px;
     @content;
   }
@@ -72,7 +74,7 @@
   $breakpoints: (
     mobile-M: 375px,
   );
-  @media screen and (max-width: map-get($breakpoints, mobile-M)) {
+  @media screen and (max-width: map.get($breakpoints, mobile-M)) {
     max-width: 355px;
     @content;
   }
