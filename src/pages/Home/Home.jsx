@@ -1,49 +1,50 @@
-import { useEffect, useState } from "react";
-import Card from "../../components/Card/Card";
-import logementsData from "../../data/logements.json";
+import homeBanner from "../../assets/picture/homeBanner.svg";
+import homeBannerMobile from "../../assets/picture/homeBannerMobile.svg";
+import Footer from "../../components/Footer/Footer";
+import useFetch from "../../utils/getData";
+import Gallery from "../../components/Gallery/Gallery";
+import Error404 from "../NotFound/Error404";
 
-const Home = () => {
-  // Le composant Home va s'éxécuter 2 fois (1 fois avec un tableau vide
-  //  et 1 fois avec les données)
-  const [logements, setLogements] = useState([]); // créer une variable d'état qui permet de recharger
-  // la valeur de logements à chaque fois que la valeur de logementsData change
-  // Si la variable logements change alors le changement est rechargé.
-  // Le rechargement automatique des données est géré par React.
-  // useState permet de déclarer une variable d'état et de la mettre à jour.
-  // Contrairement à JS plainvanilla,
-  // React va recharger la valeur de logements à chaque fois que la valeur de logementsData change.
+function Home() {
+  const { data, isLoading, error } = useFetch("../data/logements.json");
 
-  useEffect(() => {
-    setLogements(logementsData);
-  }, []);
-  // useEffect permet de déclencher une action à chaque fois que le composant est monté.
-  // Fonction Hook qui se déclenche tout au long du cycle de vie du composant.
-  // useEffect ici sera exécuté une seule fois, lors du premier rendu du composant.
-
-  // ci-dessous, on va envoyer les props (parametres) au composant Banner, composant react fonctionnel.
-  // Si image ou text change, le composant Banner sera rechargé.
-  // On utilise un key unique pour améliorer la performance de l'app React.
-  // c'est lié au cycle de vie du composant. Ca permet de dire à React
-  // que c'est un composant différent.
+  if (error) {
+    return <Error404 />;
+  }
   return (
-    <div className="home">
-      <Banner
-        image="/assets/banner.jpg"
-        text="Chez vous, partout et ailleurs"
-      />
-
-      <div className="grid">
-        {logements.map((logement) => (
-          <Card
-            key={logement.id}
-            id={logement.id}
-            title={logement.title}
-            cover={logement.cover}
+    <div className="container">
+      <main>
+        <div className="main__homeBanner">
+          <img
+            className="main__homeBanner--img"
+            src={homeBanner}
+            alt="Bannière de la page d'acceuil avec paysage de montagne"
           />
-        ))}
-      </div>
+          <img
+            className="main__homeBanner--imgMobile"
+            src={homeBannerMobile}
+            alt="Bannière de la page d'acceuil avec paysage de montagne"
+          />
+          <h1 className="main__homeBanner--title">
+            Chez vous,<br className="main__homeBanner--title--breack"></br>{" "}
+            partout et ailleurs
+          </h1>
+        </div>
+        <section className="main__gallery--container">
+          {isLoading ? (
+            <div className="loader-center">
+              <Loader />
+            </div>
+          ) : (
+            <div className="main__gallery--thumb">
+              <Gallery data={data} />
+            </div>
+          )}
+        </section>
+      </main>
+      <Footer />
     </div>
   );
-};
+}
 
 export default Home;
