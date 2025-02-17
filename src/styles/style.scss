@@ -1,14 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+@use "../styles/utils/_variables";
+@use "../pages/Home/bannerHome";
+@use "../pages/About/bannerAbout";
+@use "../components/Card/card";
+// @use '../components/Gallery/Gallery'; a faire
+@use "../components/Header/header";
+@use "../components/Footer/footer";
+@use "../components/Collapse/Collapse";
+@use "../components/Carousel/carousel"; // remplacer slideshow par carousel
+@use "./base/base";
+@use "./base/typo";
+@use "../pages/Property/_property";
+@use "../pages/Property/_propertydetails";
+@use "../pages/About/_about";
+@use "../pages/NotFound/_error404";
 
-@import "../styles/utils/variables";
-@import "../pages/Home/bannerHome";
-@import "../pages/About/bannerAbout";
-@import "../components/Card/card";
-// @import '../components/Gallery/Gallery'; a faire
-@import "../components/Header/header";
-@import "../components/Footer/footer";
-@import "../pages/PropertyDetails/";
-@import "../components/Collapse/Collapse";
-@import "../components/Carousel/carousel"; // remplacer slideshow par carousel
-@import "./base/base", "./base/typo";
-@import "../pages/PropertyDetails", "../pages/About", "../pages/NotFound";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");

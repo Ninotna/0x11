@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Banner from "../components/Banner/Banner";
-import Card from "../components/Card/Card";
-import logementsData from "../data/logements.json";
-import "../assets/styles/home.scss";
+import Banner from "../../components/Banner/Banner";
+import Card from "../../components/Card/Card";
+import logementsData from "../../data/logements.json";
 
 const Home = () => {
   // Le composant Home va s'éxécuter 2 fois (1 fois avec un tableau vide

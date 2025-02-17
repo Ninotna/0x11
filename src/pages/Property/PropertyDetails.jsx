@@ -1,8 +1,7 @@
 import { useParams, Navigate } from "react-router-dom";
-import logementsData from "../data/logements.json";
-import Slideshow from "../components/Slideshow/Slideshow";
-import Collapse from "../components/Collapse/Collapse";
-import "../assets/styles/propertydetails.scss";
+import logementsData from "../../data/logements.json";
+import Slideshow from "../../components/Carousel/Carousel";
+import Collapse from "../../components/Collapse/Collapse";
 
 const PropertyDetails = () => {
   const { id } = useParams();

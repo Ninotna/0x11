@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import NotFound from "./pages/NotFound";
-import PropertyDetails from "./pages/PropertyDetails";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import NotFound from "./pages/NotFound/404";
+import PropertyDetails from "./pages/Property/PropertyDetails";
 import Layout from "./components/Layout/Layout";
 
 const App = () => {

@@ -1,5 +1,5 @@
-import Banner from "../components/Banner/Banner";
-import Collapse from "../components/Collapse/Collapse";
+import Banner from "../../components/Banner/Banner";
+import Collapse from "../../components/Collapse/Collapse";
 import "../assets/styles/about.scss";
 
 const About = () => {
