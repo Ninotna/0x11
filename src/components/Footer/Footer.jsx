@@ -1,4 +1,3 @@
-import "../assets/styles/footer.scss"; // Style du footer
 import Logo from "../Logo/Logo";
 
 export default function Footer() {
