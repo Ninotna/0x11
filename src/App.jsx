@@ -3,7 +3,7 @@ import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
 // import PropertyDetails from "./pages/Property/PropertyDetails";
 // import About from "./pages/About/About";
-import Error404 from "./pages/NotFound/404";
+import Error404 from "./pages/NotFound/Error404";
 
 function App() {
   return (
