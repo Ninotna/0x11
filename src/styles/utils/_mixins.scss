@@ -1,0 +1,79 @@
+@mixin sliderArrow {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 25px;
+  &:hover {
+    transform: scale(1.2);
+  }
+  @include medium {
+    img {
+      width: 12px;
+    }
+  }
+}
+
+@mixin homeBanner-laptop {
+  @media screen and (max-width: 1024px) {
+    padding: 0px 20px 0px 20px;
+  }
+}
+
+@mixin homeBanner-tab {
+  @media screen and (max-width: 768px) {
+    max-width: 748px;
+    padding: 0px;
+    &--title {
+      font-size: 2rem;
+    }
+  }
+}
+
+@mixin homeBanner-mobile {
+  @media screen and (max-width: 375px) {
+    justify-content: flex-start;
+    &--img {
+      display: none;
+    }
+    &--imgMobile {
+      max-width: 335px;
+      display: flex;
+    }
+    &--title {
+      margin-left: 25px;
+      font-size: 1.3rem;
+      &--breack {
+        display: flex;
+      }
+    }
+  }
+}
+
+@mixin large {
+  $breakpoints: (
+    laptop: 1024px,
+  );
+  @media screen and (max-width: map-get($breakpoints, laptop)) {
+    max-width: 1024px;
+    @content;
+  }
+}
+
+@mixin medium {
+  $breakpoints: (
+    tablet: 768px,
+  );
+  @media screen and (max-width: map-get($breakpoints, tablet)) {
+    max-width: 748px;
+    @content;
+  }
+}
+@mixin small {
+  $breakpoints: (
+    mobile-M: 375px,
+  );
+  @media screen and (max-width: map-get($breakpoints, mobile-M)) {
+    max-width: 355px;
+    @content;
+  }
+}
