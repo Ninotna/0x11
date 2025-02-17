@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+
+@import "../styles/utils/variables";
+@import "../pages/Home/bannerHome";
+@import "../pages/About/bannerAbout";
+@import "../components/Card/card";
+// @import '../components/Gallery/Gallery'; a faire
+@import "../components/Header/header";
+@import "../components/Footer/footer";
+@import "../pages/PropertyDetails/";
+@import "../components/Collapse/Collapse";
+@import "../components/Carousel/carousel"; // remplacer slideshow par carousel
+@import "./base/base", "./base/typo";
+@import "../pages/PropertyDetails", "../pages/About", "../pages/NotFound";
