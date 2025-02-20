@@ -43,8 +43,12 @@
   }
   &__content {
     &--open {
+      div {
+        color: black;
+      }
       height: 100%;
       display: block;
+      color: black;
       // opacity: 1;
       padding: 2rem 2rem 0.8rem 1rem;
       border-radius: 10px;
