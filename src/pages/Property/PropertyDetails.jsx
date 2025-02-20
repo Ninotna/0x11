@@ -1,66 +1,63 @@
-import React from "react";
-import { useParams, Navigate } from "react-router-dom";
-import logementsData from "../../data/logements.json";
 import Footer from "../../components/Footer/Footer";
 import Error404 from "../404/Error404";
 import Carousel from "../../components/Carousel/Carousel";
 import Dropdown from "../../components/Dropdown/Dropdown";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import logementsData from "../../data/logements.json"; // Fichier JSON contenant les hébergements
 
-const PropertyDetails = () => {
-  const { id } = useParams();
-  const property = logementsData.find((logement) => logement.id === id);
+function Accomodation() {
+  const { id } = useParams(); // Récupère l'ID depuis l'URL
+  const accomodation = logementsData.find((logement) => logement.id === id);
 
-  // Redirection si l'ID est invalide avec un état personnalisé
-  if (!property) {
-    return <Navigate to="/404" state={{ errorType: "invalid-housing-id" }} />;
+  if (!accomodation) {
+    return <Error404 />; // Redirige vers une page 404 si l'ID est invalide
   }
 
   return (
-    <div className="property-details">
-      <Slideshow images={property.pictures} />
-      <div className="property-header">
-        <div>
-          <h1>{property.title}</h1>
-          <p>{property.location}</p>
-          <div className="tags">
-            {property.tags.map((tag, index) => (
-              <span key={index} className="tag">
-                {tag}
-              </span>
-            ))}
+    <div className="container">
+      <main className="main__accomodation">
+        <div className="main__accomodation--carousel">
+          <Carousel data={accomodation} />
+        </div>
+        <div className="main__accomodation--infos">
+          <section className="accomodation__infos">
+            <div className="accomodation__infos--details">
+              <h1>{accomodation.title}</h1>
+              <p>{accomodation.location}</p>
+            </div>
+            <div className="accomodation__infos--tags">
+              <Tags data={accomodation.tags} />
+            </div>
+          </section>
+          <section className="accomodation__host">
+            <div className="accomodation__host--profil">
+              <div className="accomodation__host--profilName">
+                {accomodation.host.name}
+              </div>
+              <div className="accomodation__host--profilPix">
+                <img
+                  src={accomodation.host.picture}
+                  alt={accomodation.host.name}
+                />
+              </div>
+            </div>
+            <div className="accomodation__host--rating">
+              <Rating data={accomodation.rating} />
+            </div>
+          </section>
+        </div>
+        <div className="main__accomodation--dropdowns">
+          <div className="main__accomodation--dropdown">
+            <Dropdown title="Description" content={accomodation.description} />
+          </div>
+          <div className="main__accomodation--dropdown">
+            <Dropdown title="Equipement" content={accomodation.equipments} />
           </div>
         </div>
-        <div className="host">
-          <p>{property.host.name}</p>
-          <img src={property.host.picture} alt={property.host.name} />
-        </div>
-      </div>
-      <div className="property-rating">
-        {[...Array(5)].map((_, index) => (
-          <span
-            key={index}
-            className={`star ${index < property.rating ? "filled" : ""}`}
-          >
-            ★
-          </span>
-        ))}
-      </div>
-      <div className="property-collapses">
-        <Collapse title="Description" content={property.description} />
-        <Collapse
-          title="Équipements"
-          content={
-            <ul>
-              {property.equipments.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          }
-        />
-      </div>
+      </main>
+      <Footer />
     </div>
   );
-};
+}
 
-export default PropertyDetails;
+export default Accomodation;
