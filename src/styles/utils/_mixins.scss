@@ -56,7 +56,7 @@
     laptop: 1024px,
   );
   @media screen and (max-width: map.get($breakpoints, laptop)) {
-    max-width: 1024px;
+    // max-width: 1024px;
     @content;
   }
 }
@@ -66,16 +66,16 @@
     tablet: 768px,
   );
   @media screen and (max-width: map.get($breakpoints, tablet)) {
-    max-width: 748px;
+    // max-width: 748px;
     @content;
   }
 }
 @mixin small {
   $breakpoints: (
-    mobile-M: 375px,
+    mobile-M: 767px,
   );
   @media screen and (max-width: map.get($breakpoints, mobile-M)) {
-    max-width: 355px;
+    // max-width: 355px;
     @content;
   }
 }

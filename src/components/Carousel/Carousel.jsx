@@ -7,10 +7,23 @@ function Carousel({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalSlides = pictures.length;
 
+  // const onArrowClick = (direction) => {
+  //   const increment = direction === "left" ? -1 : 1;
+  //   const newIndex = (currentIndex + increment + totalSlides) % totalSlides;
+  //   setCurrentIndex(newIndex);
+  // };
+
   const onArrowClick = (direction) => {
-    const increment = direction === "left" ? -1 : 1;
-    const newIndex = (currentIndex + increment + totalSlides) % totalSlides;
-    setCurrentIndex(newIndex);
+    const isLeft = direction === "left";
+    const newIndex = isLeft ? currentIndex - 1 : currentIndex + 1;
+
+    if (newIndex < 0) {
+      setCurrentIndex(totalSlides - 1); // Revient au dernier slide si on dépasse à gauche
+    } else if (newIndex >= totalSlides) {
+      setCurrentIndex(0); // Revient au premier slide si on dépasse à droite
+    } else {
+      setCurrentIndex(newIndex); // Sinon, met à jour normalement
+    }
   };
 
   return (

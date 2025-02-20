@@ -1,8 +1,10 @@
 import Footer from "../../components/Footer/Footer";
-import Error404 from "../404/Error404";
+import Error404 from "../NotFound/Error404";
 import Carousel from "../../components/Carousel/Carousel";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import { useParams } from "react-router-dom";
+import Tags from "../../components/Tags/Tags";
+import Rating from "../../components/Rating/Rating";
 import logementsData from "../../data/logements.json"; // Fichier JSON contenant les hébergements
 
 function Accomodation() {

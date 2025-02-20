@@ -30,11 +30,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Medium breakpoint for layout adjustments */
-    @include medium {
-      width: 748px;
-    }
-
     /* Small breakpoint for layout adjustments */
     @include small {
       height: 150px;
