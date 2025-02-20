@@ -1,0 +1,7 @@
+@use "../../styles/utils/_variables" as *;
+@use "../../styles/utils/_mixins" as *;
+
+* {
+  font-family: "Montserrat", sans-serif;
+  color: $colour-primary;
+}
