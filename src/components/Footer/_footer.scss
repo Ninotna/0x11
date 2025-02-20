@@ -1,23 +1,54 @@
-:root {
-  --footer-padding: 3.5rem 1.25rem 0;
-  --footer-gap: 1.25rem;
-  --logo-max-width: 9rem;
-  --footer-background-color: #000;
-  --footer-color: #fff;
-}
+/* .footer SCSS styling:
+   - Organizes the footer container
+   - Defines responsive breakpoints
+   - Adjusts layout for different screen sizes
+*/
 
-// Styles for the Footer component
+@use "../../styles/utils/_mixins" as *;
+@use "../../styles/utils/_variables" as *;
+
 .footer {
-  display: flex;
-  flex-direction: column;
-  gap: var(--footer-gap);
-  align-items: center;
-  padding: var(--footer-padding);
-  background-color: var(--footer-background-color);
-  color: var(--footer-color);
+  &__container {
+    width: 100%;
+    max-width: 1240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 0px;
+    background-color: black;
 
-  // Styles for the logo inside the Footer
-  .logo {
-    max-width: var(--logo-max-width);
+    /* Logo container link in the footer */
+    &--logo {
+      margin: 2rem 0rem 2rem 0rem;
+    }
+
+    /* Footer text styling */
+    &--title {
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Medium breakpoint for layout adjustments */
+    @include medium {
+      width: 748px;
+    }
+
+    /* Small breakpoint for layout adjustments */
+    @include small {
+      height: 150px;
+      gap: 15px;
+
+      &--logo {
+        width: 100px;
+        margin: 0px;
+      }
+
+      &--title {
+        font-size: 0.7rem;
+        margin: 0px;
+      }
+    }
   }
 }
