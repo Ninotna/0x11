@@ -1,0 +1,40 @@
+@use "../../styles/utils/_variables" as *;
+@use "../../styles/utils/_mixins" as *;
+
+/* .main - Conteneur principal */
+.main {
+  /* .main__aboutBanner - Gère l'affichage de la bannière "À propos" 
+	   avec différents comportements sur desktop et mobile */
+  &__aboutBanner {
+    /* Centrage du contenu horizontalement et verticalement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* &--img - Image bannière pour écrans desktop/laptop */
+    &--img {
+      width: 100%;
+      max-width: 1240px;
+    }
+
+    /* &--imgMobile - Image bannière pour écrans mobiles (masquée par défaut) */
+    &--imgMobile {
+      display: none;
+    }
+
+    /* @include medium et small gèrent les points de rupture */
+    @include medium;
+    @include small {
+      /* Cache l'image desktop pour privilégier la version mobile */
+      &--img {
+        display: none;
+      }
+
+      /* Affiche l'image mobile en adaptant la largeur max */
+      &--imgMobile {
+        max-width: 335px;
+        display: flex;
+      }
+    }
+  }
+}

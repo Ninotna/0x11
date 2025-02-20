@@ -1,0 +1,43 @@
+@use "../../styles/utils/_variables" as *;
+@use "../../styles/utils/_mixins" as *;
+
+/* .main - Conteneur principal stylisé */
+.main {
+  /* .main__about - Zone dédiée à la section "À propos" */
+  &__about {
+    margin: 0px;
+    @include medium;
+    @include small;
+  }
+
+  /* .main__aboutBanner - Bannière affichée en haut de la section "À propos" */
+  &__aboutBanner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+
+    img {
+      width: 100%;
+      max-width: 1240px;
+    }
+  }
+
+  /* .main__aboutInfos - Conteneur regroupant les informations "À propos" */
+  &__aboutInfos {
+    width: 1023px;
+    height: 100%;
+    max-width: 1023px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 31px 0px 31px 0px;
+    gap: 30px;
+    font-size: 1.3rem;
+
+    @include small {
+      font-size: 0.8rem;
+    }
+  }
+}
