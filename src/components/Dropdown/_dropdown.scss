@@ -43,7 +43,8 @@
   }
   &__content {
     &--open {
-      div {
+      div,
+      li {
         color: black;
       }
       height: 100%;
