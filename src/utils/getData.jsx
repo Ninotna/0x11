@@ -1,49 +1,49 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
-function useFetch(url) {
+function useFetch(url, options = {}) {
   const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const abortControllerRef = useRef(null); // Référence pour gérer l'annulation de la requête
 
-  useEffect(() => {
+  // Fonction pour effectuer la requête
+  const fetchData = useCallback(async () => {
     if (!url) return;
 
-    let isMounted = true; // Ajout pour éviter les erreurs de mise à jour d’état après un démontage
+    setLoading(true);
+    setError(null);
+    abortControllerRef.current?.abort(); // Annule la requête précédente si une nouvelle est lancée
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
 
-    async function fetchData() {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(url);
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+      });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        if (isMounted) {
-          setData(result);
-        }
-      } catch (err) {
-        if (isMounted) {
-          setError(err.message);
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP ! Statut : ${response.status}`);
       }
+
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        setError(err.message);
+      }
+    } finally {
+      setLoading(false);
     }
+  }, [url, options]);
 
+  // Lancement de la requête au montage ou si l'URL change
+  useEffect(() => {
     fetchData();
+    return () => abortControllerRef.current?.abort(); // Nettoyage à la destruction
+  }, [fetchData]);
 
-    // Nettoyage pour éviter les erreurs si le composant est démonté avant la fin de la requête
-    return () => {
-      isMounted = false;
-    };
-  }, [url]);
-
-  return { isLoading, data, error };
+  return { isLoading, data, error, refetch: fetchData };
 }
 
 export default useFetch;
