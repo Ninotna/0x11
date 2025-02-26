@@ -1,43 +1,59 @@
 @use "../../styles/utils/_variables" as *;
 @use "../../styles/utils/_mixins" as *;
 
-/* .main - Conteneur principal stylisé */
-.main {
-  /* .main__about - Zone dédiée à la section "À propos" */
-  &__about {
-    margin: 0px;
-    @include medium;
-    @include small;
-  }
-
-  /* .main__aboutBanner - Bannière affichée en haut de la section "À propos" */
-  &__aboutBanner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0px;
-
-    img {
-      width: 100%;
-      max-width: 1240px;
-    }
-  }
-
-  /* .main__aboutInfos - Conteneur regroupant les informations "À propos" */
-  &__aboutInfos {
-    width: 1023px;
-    height: 100%;
-    max-width: 1023px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 31px 0px 31px 0px;
-    gap: 30px;
-    font-size: 1.3rem;
+.card {
+  &__accomodation {
+    width: 100%;
+    height: 340px;
+    border-radius: 10px;
+    background-color: $colour-primary;
+    position: relative; /* Permet de positionner le caption */
 
     @include small {
-      font-size: 0.8rem;
+      height: 255px;
+    }
+
+    &--img {
+      height: 100%;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+      }
+    }
+
+    &--caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30%; /* hauteur de l'overlay */
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      border-radius: 0px 0px 10px 10px;
+      background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        /* Dégradé plus foncé */ rgba(0, 0, 0, 0.9) 100%
+      );
+      z-index: 2;
+
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: white;
+        margin: 0px;
+        padding: 1rem;
+      }
     }
   }
 }

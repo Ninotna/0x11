@@ -15,7 +15,7 @@
     border-radius: $border-rad;
     overflow: hidden;
     @include medium {
-      width: 768px;
+      // width: 768px;
       height: 335px;
     }
     @include small {
@@ -61,12 +61,12 @@
       @include sliderArrow;
     }
     @include medium {
-      width: 748px;
+      // width: 748px;
       left: 0;
       transform: translateY(-50%);
     }
     @include small {
-      width: 355px;
+      // width: 355px;
     }
   }
 }
