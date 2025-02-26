@@ -1,31 +1,30 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 
 function useFetch(url, options = {}) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const abortControllerRef = useRef(null); // Référence pour gérer l'annulation de la requête
+  const abortControllerRef = useRef(null);
 
-  // Fonction pour effectuer la requête
+  // 🔹 Mémorisation des options pour éviter que `useCallback` ne se redéclenche en boucle
+  const stableOptions = useMemo(() => options, [options]);
+
   const fetchData = useCallback(async () => {
     if (!url) return;
-
     setLoading(true);
     setError(null);
-    abortControllerRef.current?.abort(); // Annule la requête précédente si une nouvelle est lancée
+    abortControllerRef.current?.abort();
     const controller = new AbortController();
     abortControllerRef.current = controller;
 
     try {
       const response = await fetch(url, {
-        ...options,
+        ...options, // Directement utiliser options
         signal: controller.signal,
       });
-
       if (!response.ok) {
         throw new Error(`Erreur HTTP ! Statut : ${response.status}`);
       }
-
       const result = await response.json();
       setData(result);
     } catch (err) {
@@ -35,12 +34,11 @@ function useFetch(url, options = {}) {
     } finally {
       setLoading(false);
     }
-  }, [url, options]);
+  }, [url, JSON.stringify(options)]); // ✅ Compare le contenu de options, pas juste la référence
 
-  // Lancement de la requête au montage ou si l'URL change
   useEffect(() => {
     fetchData();
-    return () => abortControllerRef.current?.abort(); // Nettoyage à la destruction
+    return () => abortControllerRef.current?.abort();
   }, [fetchData]);
 
   return { isLoading, data, error, refetch: fetchData };
