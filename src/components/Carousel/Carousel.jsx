@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import arrowPrevious from "../../assets/icons/arrowPrevious.svg";
 import arrowNext from "../../assets/icons/arrowNext.svg";
-
+import PropTypes from "prop-types";
 function Carousel({ data }) {
   const { pictures, title } = data;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -61,5 +61,13 @@ function Carousel({ data }) {
     </section>
   );
 }
+
+// Définition des propTypes
+Carousel.propTypes = {
+  data: PropTypes.shape({
+    title: PropTypes.string.isRequired, // Titre obligatoire de type string
+    pictures: PropTypes.arrayOf(PropTypes.string).isRequired, // Tableau d'URLs de type string obligatoire
+  }).isRequired,
+};
 
 export default Carousel;
