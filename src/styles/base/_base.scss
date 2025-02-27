@@ -1,3 +1,6 @@
+@use "../../styles/utils/_variables" as *;
+@use "../../styles/utils/_mixins" as *;
+
 * {
   max-width: 1440px;
   margin: auto;
@@ -11,4 +14,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  @include small {
+    padding: 0 10px;
+  }
 }
