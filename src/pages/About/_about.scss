@@ -8,6 +8,7 @@
     margin: 0px;
     @include medium;
     @include small;
+    // padding: 0px 10px;
   }
 
   /* .main__aboutBanner - Bannière affichée en haut de la section "À propos" */
@@ -16,16 +17,17 @@
     justify-content: center;
     align-items: center;
     margin: 0px;
+    // padding: 0px 10px;
 
     img {
-      width: 100%;
+      // width: 100%;
       max-width: 1240px;
     }
   }
 
   /* .main__aboutInfos - Conteneur regroupant les informations "À propos" */
   &__aboutInfos {
-    width: 1023px;
+    // width: 1023px;
     height: 100%;
     max-width: 1023px;
     display: flex;
@@ -33,11 +35,12 @@
     align-items: center;
     flex-direction: column;
     padding: 31px 0px 31px 0px;
-    gap: 30px;
+    gap: 20px;
     font-size: 1.3rem;
 
     @include small {
       font-size: 0.8rem;
+      padding: 20px 10px;
     }
   }
 }
