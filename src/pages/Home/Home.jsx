@@ -14,7 +14,7 @@ function Home() {
     // console.log(data);
     return <Error404 />;
   }
-  console.log(data);
+  // console.log(data);
   return (
     <div className="container">
       <main>
